@@ -9,7 +9,8 @@
       "**/.*",
       "**/node_modules/**",
       "School-text.txt",
-      "**/*.md"
+      "**/*.md",
+      "**/*Name clash*"
     ],
     "headers": [
       {
