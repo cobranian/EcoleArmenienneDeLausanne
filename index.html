@@ -1213,13 +1213,14 @@
     .hero-plate .plate-glyph { font-size: 44px; }
     .hero-meta { grid-template-columns: 1fr; }
     .hero-meta .corner { text-align: left; }
-    .section-header { grid-template-columns: 1fr; }
+    .section-header { grid-template-columns: minmax(0, 1fr); }
+    .section-title { min-width: 0; overflow-wrap: break-word; }
     .section-num { font-size: 44px; }
     .manifesto-body,
     .discipline,
     .practical-grid,
     .programme-coda {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       grid-template-rows: none;
     }
     .practical-col {
@@ -1266,10 +1267,11 @@
       height: auto;
     }
     .g2, .g6 { aspect-ratio: 3 / 4; }
-    .inscription-inner { grid-template-columns: 1fr; }
+    .inscription-inner { grid-template-columns: minmax(0, 1fr); }
+    .inscription-big { min-width: 0; }
     .inscription-actions { flex-direction: column; align-items: flex-start; }
     .inscription-actions .note { margin-left: 0; }
-    .contact-card { grid-template-columns: 1fr; }
+    .contact-card { grid-template-columns: minmax(0, 1fr); }
     .contact-card::before { left: 0; transform: none; }
   }
 
