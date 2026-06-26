@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "armeniensdelausanne"
+  },
+  "targets": {
+    "armeniensdelausanne": {
+      "hosting": {
+        "ecole": [
+          "ecolearmeniennedelausanne"
+        ]
+      }
+    }
+  }
+}
