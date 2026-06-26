@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>École Arménienne de Lausanne · Հայկական Կիրակնօրեայ Վարժարան</title>
+<title>École Arménienne de Lausanne ARARAT · Հայկական Կիրակնօրեայ Վարժարան</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..900,30..100;1,9..144,200..900,30..100&family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Noto+Serif+Armenian:wght@100..900&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -812,6 +812,90 @@
     text-align: right;
   }
 
+  /* ───────── adult dance — groupe Margarit ───────── */
+  .adult-dance {
+    margin-top: clamp(48px, 6vw, 84px);
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: clamp(20px, 4vw, 56px);
+  }
+  .adult-dance .ad-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    line-height: 1.7;
+  }
+  .adult-dance .ad-label .hye {
+    display: block;
+    font-family: var(--hye);
+    font-size: 22px;
+    color: var(--pomegranate);
+    letter-spacing: 0.02em;
+    text-transform: none;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+  .adult-dance .big {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(26px, 2.4vw, 34px);
+    line-height: 1.15;
+    color: var(--ink);
+    margin: 0 0 30px;
+    letter-spacing: -0.01em;
+    max-width: 34ch;
+  }
+  .adult-dance .big .strong {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--pomegranate);
+  }
+  .adult-dance .big em { color: var(--pomegranate); }
+  .venues {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 3vw, 48px);
+    border-top: 1px solid var(--rule);
+    padding-top: 26px;
+  }
+  .venue .day {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--pomegranate);
+    font-weight: 400;
+    display: block;
+  }
+  .venue .time {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(22px, 2vw, 28px);
+    color: var(--ink);
+    display: block;
+    margin: 5px 0 16px;
+  }
+  .venue address {
+    font-style: normal;
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .venue address b {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  @media (max-width: 720px) {
+    .adult-dance { grid-template-columns: 1fr; }
+    .venues { grid-template-columns: 1fr; gap: 26px; }
+  }
+
   /* ───────── inscription ───────── */
   .inscription {
     padding: clamp(28px, 4vw, 56px) 0 clamp(36px, 5vw, 64px);
@@ -989,6 +1073,28 @@
     margin-top: 6px;
   }
 
+  /* donation / bank-transfer variant of the calling card */
+  .donation-card::before { content: "\58F"; } /* Armenian dram sign */
+  .donation-card .iban {
+    font-family: var(--mono);
+    font-size: clamp(16px, 1.8vw, 21px);
+    letter-spacing: 0.08em;
+    color: var(--pomegranate);
+    margin: 18px 0 0;
+    padding-top: 14px;
+    border-top: 1px solid rgba(107,90,62,0.3);
+    word-spacing: 0.12em;
+  }
+  .donation-card .iban small {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 7px;
+    word-spacing: normal;
+  }
+
   /* ───────── footer ───────── */
   footer {
     padding: 40px 0 56px;
@@ -1079,8 +1185,22 @@
 
   /* ───────── responsive ───────── */
   @media (max-width: 900px) {
-    nav.top { display: none; }
-    .topbar { padding-bottom: 14px; }
+    .topbar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+      padding-bottom: 14px;
+    }
+    nav.top {
+      gap: 26px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 6px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    nav.top::-webkit-scrollbar { display: none; }
+    nav.top a { white-space: nowrap; flex: 0 0 auto; }
     .hero-plate { height: clamp(280px, 52vh, 440px); }
     .hero-plate .plate-caption { flex-direction: column; align-items: flex-start; gap: 14px; }
     .hero-plate .plate-caption .credit { text-align: left; }
@@ -1124,6 +1244,67 @@
     .contact-card { grid-template-columns: 1fr; }
     .contact-card::before { left: 0; transform: none; }
   }
+
+  /* ───────── phones ───────── */
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    .wrap { padding: 0 18px; }
+
+    .topbar { padding: 18px 0 12px; }
+    .topbar .mark .wordmark b { font-size: 14px; }
+    .topbar .mark .logo { width: 34px; height: 34px; }
+
+    .hero-plate { height: clamp(230px, 54vh, 380px); margin-top: 12px; }
+    .hero-plate .plate-caption {
+      left: 20px; right: 20px; bottom: 20px;
+    }
+    .hero-plate .plate-caption .lede { font-size: 16px; max-width: 100%; }
+    .hero-plate .plate-glyph { font-size: 38px; }
+
+    .ribbon-track { font-size: 30px; gap: 36px; }
+
+    .section-title { font-size: clamp(27px, 8.6vw, 40px); }
+    .section-num { font-size: 36px; }
+
+    .manifesto-body p { font-size: 18px; }
+    .manifesto-body p:first-of-type::first-letter {
+      font-size: 4.4em; padding-right: 10px;
+    }
+
+    .discipline { padding: 30px 0; }
+    .discipline .glyph-block { font-size: 72px; }
+    .discipline h3 { font-size: 25px; }
+    .discipline p { font-size: 17px; }
+
+    .schedule {
+      grid-template-columns: 84px minmax(0, 1fr) auto;
+      column-gap: 10px;
+    }
+    .schedule .row > * { font-size: 14px; padding: 10px 0; }
+    .schedule .row b { font-size: 10px; letter-spacing: 0.12em; }
+    .schedule .row em { font-size: 10px; letter-spacing: 0.06em; }
+
+    .venue .time { font-size: 22px; }
+    .venue address { font-size: 15px; }
+
+    .inscription-big {
+      font-size: clamp(32px, 9.5vw, 52px);
+      line-height: 1.02;
+      overflow-wrap: anywhere;
+    }
+    .inscription-actions a { font-size: 19px; overflow-wrap: anywhere; }
+
+    .contact-card .coords,
+    .contact-card .coords address { font-size: 16px; }
+    .contact-card .director-name { font-size: clamp(24px, 7vw, 32px); }
+
+    .donation-card .iban {
+      font-size: 15px;
+      letter-spacing: 0.03em;
+      word-spacing: normal;
+      overflow-wrap: anywhere;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1133,7 +1314,7 @@
   <!-- top bar -->
   <header class="topbar">
     <div class="mark">
-      <a href="#" class="logo" aria-label="École Arménienne de Lausanne">
+      <a href="#" class="logo" aria-label="École Arménienne de Lausanne ARARAT">
         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="1.6"/>
           <circle cx="50" cy="50" r="41" fill="none" stroke="currentColor" stroke-width="0.7" opacity="0.55"/>
@@ -1147,7 +1328,7 @@
         </svg>
       </a>
       <span class="wordmark">
-        <b>École Arménienne de Lausanne</b>
+        <b>École Arménienne de Lausanne ARARAT</b>
         Lausanne · Est. MMXVIII
       </span>
     </div>
@@ -1163,7 +1344,7 @@
   <!-- full-bleed photographic plate -->
   <section class="hero-plate" aria-label="Photographie d'ouverture">
     <img src="images/314874277_108011278794425_7759031406350559581_n-1024x768.jpg"
-         alt="Élèves de l'École Arménienne de Lausanne réunis sous le drapeau">
+         alt="Élèves de l'École Arménienne de Lausanne ARARAT réunis sous le drapeau">
     <div class="plate-glyph" aria-hidden="true">Ա</div>
     <div class="plate-caption">
       <p class="lede">
@@ -1231,7 +1412,7 @@
       <div class="void"></div>
       <div class="reveal" data-d="1">
         <p>
-          Depuis 2017, l'École Arménienne de Lausanne réunit chaque dimanche après-midi
+          Depuis 2017, l'École Arménienne de Lausanne ARARAT réunit chaque dimanche après-midi
           les enfants de la communauté arménienne de Suisse romande. Nos élèves
           y apprennent à lire et à écrire dans l'alphabet créé par Mesrop Mashtots
           en 405 — un trésor de trente-neuf lettres qui a porté une langue à travers
@@ -1305,17 +1486,17 @@
         </div>
         <div>
           <h3><span class="num">II.</span> Les moyens</h3>
-          <div class="meta">Ani Lokyan · Միջակներ</div>
+          <div class="meta">Sonia Vanyan · Միջակներ</div>
         </div>
         <div>
           <p>
-            L'objectif : apprendre à <em>lire</em> et à <em>écrire</em> —
+            L'objectif : apprendre à <em>lire</em> et à <em>écrire</em>, enrichir le vocabulaire, bases de grammaire —
             en commençant par l'alphabet, puis les mots, puis les phrases.
             Pas de précipitation, mais une progression patiente, lettre après lettre,
             jusqu'à ce que le texte devienne une voix familière.
           </p>
           <p class="bio">
-            <b>Ani Lokyan</b> est enseignante professionnelle d'arménien,
+            <b>Sonia Vanyan</b> — enseignante de langue arménienne et de peinture,
             originaire d'Arménie.
           </p>
         </div>
@@ -1347,7 +1528,7 @@
     <!-- coda: dance integration + year-round events -->
     <div class="programme-coda reveal" data-d="4">
       <div class="coda-label">
-        Et au-delà<span class="hye">Տօն</span>
+        Et au-delà<span class="hye">Տnն</span>
       </div>
       <div>
         <p>
@@ -1375,7 +1556,7 @@
     <div class="section-header reveal">
       <div class="section-num">Գ<small>folio · III</small></div>
       <h2 class="section-title">
-        <em>Huit années,</em> <span class="strong">cent-vingt enfants, mille dimanches.</span>
+        <em>Neuf années,</em> <span class="strong">soixante enfants, trois-cents dimanches.</span>
         <span class="hye">Պատկերներ</span>
       </h2>
     </div>
@@ -1423,9 +1604,9 @@
 
       <div class="practical-col reveal" data-d="1">
         <h4>Lieu &amp; Horaires</h4>
-        <p class="big">Chaque dimanche après-midi, <span class="strong">de 16h à 20h</span>, hors vacances scolaires vaudoises.</p>
+        <p class="big">Chaque dimanche après-midi, <span class="strong">de 15h à 20h</span>, hors vacances scolaires vaudoises.</p>
         <p>
-          Les cours se tiennent à la <em>Maison de quartier de Bonne-Espérance</em>,
+          Les cours se tiennent à la <em>Maison de quartier des Faverges</em>,
           à Lausanne. Les trois groupes travaillent en parallèle durant la première
           heure ; à 17 heures, les moyens et les grands rejoignent le cours
           de danse, tandis que les tout-petits poursuivent leurs activités
@@ -1433,9 +1614,8 @@
         </p>
 
         <div class="schedule">
-          <div class="row"><b>16:00 — 17:00</b><span>Tout-petits — langue, jeux danse</span><em>3 — 7 ans</em></div>
-          <div class="row"><b>17:00 — 18:00</b><span>Moyens — lecture, écriture</span><em>7 — 12 ans</em></div>
-          <div class="row"><b>18:00 — 19:00</b><span>Grands — débats, textes projets</span><em>12 — 16 ans</em></div>
+          <div class="row"><b>15:00 — 16:00</b><span>Tout-petits - grands au petit bagage</span><em>3 — 7 ans</em></div>
+          <div class="row"><b>16:00 — 17:00</b><span>Moyens — lecture, écriture</span><em>7 — 12 ans</em></div>
           <div class="row"><b>19:00 — 20:00</b><span>Danse traditionnelle arménienne</span><em>Moy. & Grands</em></div>
         </div>
       </div>
@@ -1444,16 +1624,44 @@
         <h4>Tarifs &amp; Inscription</h4>
         <p class="big">L'école est <span class="strong">à but non lucratif</span> — soutenue par les familles, les bénévoles et la communauté.</p>
         <p>
-          La cotisation annuelle couvre les supports pédagogiques, les fêtes
+          La cotisation mensuelle couvre les supports pédagogiques, les fêtes
           trimestrielles et le matériel de danse. Personne n'est jamais refusé
           pour des raisons financières — parlez-en discrètement à la directrice.
         </p>
 
         <div class="schedule">
-          <div class="row"><b>1<sup>er</sup> enfant</b><span>Cotisation annuelle</span><em>CHF 400</em></div>
-          <div class="row"><b>2<sup>e</sup> enfant</b><span>Tarif fratrie</span><em>CHF 300</em></div>
-          <div class="row"><b>3<sup>e</sup> enfant +</b><span>Tarif famille nombreuse</span><em>Gratuit</em></div>
-          <div class="row"><b>Essai</b><span>3 dimanches sans engagement</span><em>Offert</em></div>
+          <div class="row"><b>1<sup>er</sup> enfant</b><span>Cotisation mensuelle</span><em>CHF 30</em></div>
+          <div class="row"><b>2<sup>e</sup> enfant</b><span>Tarif fratrie</span><em>CHF 50</em></div>
+          <div class="row"><b>3<sup>e</sup> enfant +</b><span>Tarif famille nombreuse</span><em>65</em></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="adult-dance reveal" data-d="3">
+      <div class="ad-label">
+        Danse · Adultes<span class="hye">Մարգարիտ</span>
+      </div>
+      <div>
+        <p class="big">Cours de <span class="strong">danse arménienne pour les adultes</span> — le groupe <em>Margarit</em>.</p>
+        <div class="venues">
+          <div class="venue">
+            <b class="day">Dimanche</b>
+            <span class="time">9h — 10h</span>
+            <address>
+              <b>Studio2</b><br>
+              Rue du Valentin 35<br>
+              1004 Lausanne
+            </address>
+          </div>
+          <div class="venue">
+            <b class="day">Mardi</b>
+            <span class="time">18h — 19h</span>
+            <address>
+              <b>Maison de quartier des Faverges</b><br>
+              Ch. de Bonne-Espérance 30<br>
+              1006 Lausanne
+            </address>
+          </div>
         </div>
       </div>
     </div>
@@ -1508,6 +1716,43 @@
             </dd>
           </dl>
         </div>
+
+        <div class="contact-card donation-card">
+          <div class="label">
+            Versements &amp; Dons
+            <span class="hye">Նուէր</span>
+          </div>
+
+          <div>
+            <p class="director-name">Soutenir l'école</p>
+            <p class="director-role">
+              L'école est une <span class="strong">association à but non lucratif</span>.
+              Cotisations et dons se versent par virement bancaire —
+              chaque contribution fait vivre la langue.
+            </p>
+            <p class="iban">
+              <small>IBAN</small>
+              CH27 0900 0000 1683 7293 9
+            </p>
+          </div>
+
+          <dl class="coords">
+            <dt>Banque</dt>
+            <dd>PostFinance</dd>
+
+            <dt>BIC / SWIFT</dt>
+            <dd>POFICHBEXXX</dd>
+
+            <dt>Bénéficiaire</dt>
+            <dd>
+              <address>
+                Ecole arménienne de Lausanne ARARAT<br>
+                Ch. de Bonne-Espérance 32<br>
+                1006 Lausanne · Suisse
+              </address>
+            </dd>
+          </dl>
+        </div>
       </div>
     </div>
   </section>
@@ -1543,7 +1788,7 @@
     <div class="footer-content">
       <div>
         <span class="glyph">Ա · Բ · Գ</span><br>
-        École Arménienne de Lausanne — Association sans but lucratif — MMXVIII–MMXXVI
+        École Arménienne de Lausanne ARARAT — Association sans but lucratif — MMXVIII–MMXXVI
       </div>
       <div style="text-align:right">
         <a href="#">Instagram</a> · <a href="#">Facebook</a><br>
