@@ -157,6 +157,41 @@
   }
   nav.top a:hover { color: var(--pomegranate); }
   nav.top a:hover::after { transform: scaleX(1); }
+  /* mobile hamburger — hidden until the topbar collapses */
+  .nav-toggle {
+    display: none;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 42px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: border-color .25s ease, color .25s ease;
+  }
+  .nav-toggle:hover { border-color: var(--pomegranate); color: var(--pomegranate); }
+  .nav-toggle__bars,
+  .nav-toggle__bars::before,
+  .nav-toggle__bars::after {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), background-color .2s ease;
+  }
+  .nav-toggle__bars { position: relative; }
+  .nav-toggle__bars::before { position: absolute; left: 0; top: -6px; }
+  .nav-toggle__bars::after  { position: absolute; left: 0; top:  6px; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars { background: transparent; }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::before { transform: translateY(6px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .nav-toggle__bars::after  { transform: translateY(-6px) rotate(-45deg); }
 
   /* ───────── hero plate (full-bleed photograph) ───────── */
   .hero-plate {
@@ -1192,21 +1227,33 @@
   /* ───────── responsive ───────── */
   @media (max-width: 900px) {
     .topbar {
-      flex-direction: column;
-      align-items: stretch;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
       gap: 14px;
       padding-bottom: 14px;
     }
+    .topbar .mark { flex: 1 1 0; min-width: 0; }
+    .topbar .mark .wordmark { min-width: 0; }
+    .nav-toggle { display: inline-flex; order: 2; flex-shrink: 0; }
     nav.top {
-      gap: 26px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 6px;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      order: 3;
+      flex-basis: 100%;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 4px;
+      display: none;
     }
-    nav.top::-webkit-scrollbar { display: none; }
-    nav.top a { white-space: nowrap; flex: 0 0 auto; }
+    nav.top.is-open { display: flex; }
+    nav.top a {
+      white-space: nowrap;
+      padding: 13px 2px;
+      border-bottom: 1px solid var(--rule);
+    }
+    nav.top a:last-child { border-bottom: none; }
+    nav.top a::after { display: none; }
     .hero-plate { height: clamp(280px, 52vh, 440px); }
     .hero-plate .plate-caption { flex-direction: column; align-items: flex-start; gap: 14px; }
     .hero-plate .plate-caption .credit { text-align: left; }
@@ -1359,7 +1406,10 @@
         Lausanne · Est. MMXVIII
       </span>
     </div>
-    <nav class="top">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Ouvrir le menu">
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+    </button>
+    <nav class="top" id="primary-nav" aria-label="Navigation principale">
       <a href="#manifeste">Manifeste</a>
       <a href="#programme">Programme</a>
       <a href="#galerie">Galerie</a>
@@ -1853,6 +1903,21 @@
     if (!track) return;
     const make = () => letters.map(l => `<span>${l}</span>`).join("");
     track.innerHTML = make() + make();
+  })();
+
+  // mobile nav toggle
+  (function () {
+    const btn = document.querySelector(".nav-toggle");
+    const nav = document.getElementById("primary-nav");
+    if (!btn || !nav) return;
+    const setOpen = (open) => {
+      nav.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+    };
+    btn.addEventListener("click", () => setOpen(btn.getAttribute("aria-expanded") !== "true"));
+    nav.addEventListener("click", (e) => { if (e.target.closest("a")) setOpen(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") setOpen(false); });
   })();
 
   // scroll reveal
